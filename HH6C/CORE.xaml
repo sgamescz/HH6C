@@ -7,9 +7,6 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:v="clr-namespace:WpfApp6.View"
         xmlns:vm="clr-namespace:WpfApp6.ViewModel"
-        
-
-                      xmlns:pohledy="clr-namespace:WpfApp6.Pohledy"
                       
         mc:Ignorable="d"
         Title="MainWindow" Height="772" Width="949">

@@ -175,10 +175,6 @@
       <DependentUpon>CORE.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pohledy\Test.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\FirstView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -197,9 +193,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pohledy\Test.xaml.cs">
-      <DependentUpon>Test.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
