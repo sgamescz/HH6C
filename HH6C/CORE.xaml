@@ -6,7 +6,6 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:v="clr-namespace:WpfApp6.View"
-        xmlns:vm="clr-namespace:WpfApp6.ViewModel"
                       
         mc:Ignorable="d"
         Title="HelpdeskA" Height="772" Width="949" WindowStartupLocation="CenterScreen" WindowState="Maximized">
@@ -14,19 +13,7 @@
     <Window.Resources>
 
         <ResourceDictionary>
-            <DataTemplate DataType="{x:Type vm:FirstViewModel}">
-                <v:FirstView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type vm:SecondViewModel}">
-                <v:SecondView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type vm:HledaniViewModel }">
-                <v:HledaniView />
-            </DataTemplate>
-
-            <DataTemplate DataType="{x:Type vm:RozvrhViewModel}">
-                <v:RozvrhView  />
-            </DataTemplate>
+          
 
 
             <DataTemplate x:Key="MenuItemTemplateIC" DataType="{x:Type Controls:HamburgerMenuIconItem}">
@@ -108,14 +95,17 @@
             <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Themes/HamburgerMenuTemplate.xaml" />
         </Grid.Resources>
 
-      
-            
-            
-            <Controls:HamburgerMenu x:Name="hamburgermenu" Content="{Binding CurrentViewModel}"
+
+
+
+        <Controls:HamburgerMenu x:Name="HamburgerMenuControl"
                                       DisplayMode="CompactInline"
                                     HamburgerWidth="64"
                                     IsPaneOpen="False" 
                                     CompactPaneLength="64"
+                                SelectedIndex="0"
+                                    ItemInvoked="HamburgerMenuControl_OnItemInvoked"
+
                                     ItemTemplate="{StaticResource MenuItemTemplateIC}"
                                     Style="{StaticResource HamburgerMenuCreatorsStyle}"
                                     VerticalScrollBarOnLeftSide="False">
@@ -140,18 +130,30 @@
                         <Controls:HamburgerMenuIconItem.Icon>
                             <iconPacks:PackIconOcticons Kind="Search" />
                         </Controls:HamburgerMenuIconItem.Icon>
+                        <Controls:HamburgerMenuIconItem.Tag>
+                            <v:HledaniView />
+                        </Controls:HamburgerMenuIconItem.Tag>
+
                     </Controls:HamburgerMenuIconItem>
 
                     <Controls:HamburgerMenuIconItem Command="{Binding OpenSecondViewModelCommand}" Label="Info o akci">
                         <Controls:HamburgerMenuIconItem.Icon>
                             <iconPacks:PackIconModern Kind="Information" />
                         </Controls:HamburgerMenuIconItem.Icon>
+                        <Controls:HamburgerMenuIconItem.Tag>
+                            <v:FirstView/>
+                        </Controls:HamburgerMenuIconItem.Tag>
+
                     </Controls:HamburgerMenuIconItem>
 
                     <Controls:HamburgerMenuIconItem Command="{Binding OpenFirstViewModelCommand}" Label="Telefonické konzultace">
                         <Controls:HamburgerMenuIconItem.Icon>
                             <iconPacks:PackIconMaterialLight Kind="Phone" />
                         </Controls:HamburgerMenuIconItem.Icon>
+                        <Controls:HamburgerMenuIconItem.Tag>
+                            <v:SecondView/>
+                        </Controls:HamburgerMenuIconItem.Tag>
+
                     </Controls:HamburgerMenuIconItem>
 
 
@@ -159,6 +161,10 @@
                         <Controls:HamburgerMenuIconItem.Icon>
                             <iconPacks:PackIconModern Kind="Bug" />
                         </Controls:HamburgerMenuIconItem.Icon>
+                        <Controls:HamburgerMenuIconItem.Tag>
+                            <v:RozvrhView />
+                        </Controls:HamburgerMenuIconItem.Tag>
+
                     </Controls:HamburgerMenuIconItem>
 
                     <Controls:HamburgerMenuIconItem Label="Rozvrh">
@@ -195,14 +201,53 @@
                         <Controls:HamburgerMenuIconItem.Icon>
                             <iconPacks:PackIconMaterialLight Kind="NoteText" />
                         </Controls:HamburgerMenuIconItem.Icon>
+                        <Controls:HamburgerMenuIconItem.Tag>
+                            <v:FirstView/>
+                        </Controls:HamburgerMenuIconItem.Tag>
+
                     </Controls:HamburgerMenuIconItem>
                     
                     
                 </Controls:HamburgerMenuItemCollection>
             </Controls:HamburgerMenu.ItemsSource>
 
-                
 
+            <!--  Content  -->
+            <Controls:HamburgerMenu.ContentTemplate>
+                <DataTemplate>
+                    <Grid x:Name="ContentGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="48" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Controls:TransitioningContentControl Grid.Row="0"
+                                    Margin="20 5 -1 0"
+                                                                      Transition="RightReplace"  
+                                    Background="{DynamicResource MahApps.Brushes.WhiteColor}"  FontSize="24"
+                                           Foreground="{DynamicResource MahApps.Brushes.Accent}" Content="{Binding Label}">
+
+
+                        </Controls:TransitioningContentControl>
+
+
+                        <Controls:TransitioningContentControl Grid.Row="1"
+                                                                  Content="{Binding Tag }"
+                                                                  RestartTransitionOnContentChange="True"
+                                                                  Transition="Down"      
+                                                                      Margin="20 10 0 0"
+                                                                      >
+
+
+                        </Controls:TransitioningContentControl>
+
+
+                    </Grid>
+
+                </DataTemplate>
+
+            </Controls:HamburgerMenu.ContentTemplate>
+                
         </Controls:HamburgerMenu>
     </Grid>
 

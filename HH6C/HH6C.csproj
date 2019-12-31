@@ -146,11 +146,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModel\FirstViewModel.cs" />
-    <Compile Include="ViewModel\HledaniViewModel.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\RozvrhViewModel.cs" />
-    <Compile Include="ViewModel\SecondViewModel.cs" />
     <Compile Include="View\FirstView.xaml.cs">
       <DependentUpon>FirstView.xaml</DependentUpon>
     </Compile>

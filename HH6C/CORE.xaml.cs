@@ -50,7 +50,6 @@ namespace WpfApp6
 
             InitializeComponent();
 
-            this.DataContext = new ViewModel.MainViewModel();
             MahApps.Metro.ThemeManager.ChangeTheme(Application.Current, pozadi[pouzitepozadi], barva[pouzitabarva]);
         }
 
@@ -63,6 +62,13 @@ namespace WpfApp6
             }
 
             MahApps.Metro.ThemeManager.ChangeTheme(Application.Current, pozadi[pouzitepozadi], barva[pouzitabarva]);
+        }
+
+        private void HamburgerMenuControl_OnItemInvoked(object sender, HamburgerMenuItemInvokedEventArgs e)
+        {
+            this.HamburgerMenuControl.Content = e.InvokedItem;
+            //this.HamburgerMenuControl.DataContext = Pohledy.Test.DataContextProperty;
+
         }
 
         private void zmenbarvupozadi(object sender, RoutedEventArgs e)
