@@ -9,7 +9,7 @@
         xmlns:vm="clr-namespace:WpfApp6.ViewModel"
                       
         mc:Ignorable="d"
-        Title="MainWindow" Height="772" Width="949">
+        Title="HelpdeskA" Height="772" Width="949" WindowStartupLocation="CenterScreen" WindowState="Maximized">
 
     <Window.Resources>
 
@@ -111,21 +111,32 @@
       
             
             
-            <Controls:HamburgerMenu Content="{Binding CurrentViewModel}"
+            <Controls:HamburgerMenu x:Name="hamburgermenu" Content="{Binding CurrentViewModel}"
                                       DisplayMode="CompactInline"
                                     HamburgerWidth="64"
-                                    IsPaneOpen="True"
+                                    IsPaneOpen="False" 
                                     CompactPaneLength="64"
                                     ItemTemplate="{StaticResource MenuItemTemplateIC}"
                                     Style="{StaticResource HamburgerMenuCreatorsStyle}"
                                     VerticalScrollBarOnLeftSide="False">
-                
 
-                
+
+            <Controls:HamburgerMenu.HamburgerMenuHeaderTemplate>
+                <DataTemplate>
+                    <TextBlock 
+                                   VerticalAlignment="Center"
+                                   FontSize="16"
+                                   Foreground="{DynamicResource MahApps.Brushes.Accent}"
+                                       FontWeight="DemiBold" 
+                                       HorizontalAlignment="Left"
+                                Margin="10 0 0 0"
+                                   Text="HelpdeskA" />
+                </DataTemplate>
+            </Controls:HamburgerMenu.HamburgerMenuHeaderTemplate>
             <Controls:HamburgerMenu.ItemsSource>
                 <Controls:HamburgerMenuItemCollection>
 
-                    <Controls:HamburgerMenuIconItem Command="{Binding OpenFirstViewModelCommand}" Label="Hledat akci">
+                    <Controls:HamburgerMenuIconItem Command="{Binding OpenHledaniViewModelCommand}" Label="Hledat akci">
                         <Controls:HamburgerMenuIconItem.Icon>
                             <iconPacks:PackIconOcticons Kind="Search" />
                         </Controls:HamburgerMenuIconItem.Icon>
@@ -137,7 +148,7 @@
                         </Controls:HamburgerMenuIconItem.Icon>
                     </Controls:HamburgerMenuIconItem>
 
-                    <Controls:HamburgerMenuIconItem Command="{Binding OpenHledaniViewModelCommand}" Label="Telefonické konzultace">
+                    <Controls:HamburgerMenuIconItem Command="{Binding OpenFirstViewModelCommand}" Label="Telefonické konzultace">
                         <Controls:HamburgerMenuIconItem.Icon>
                             <iconPacks:PackIconMaterialLight Kind="Phone" />
                         </Controls:HamburgerMenuIconItem.Icon>
@@ -190,6 +201,7 @@
                 </Controls:HamburgerMenuItemCollection>
             </Controls:HamburgerMenu.ItemsSource>
 
+                
 
         </Controls:HamburgerMenu>
     </Grid>

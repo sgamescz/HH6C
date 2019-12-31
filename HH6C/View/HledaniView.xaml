@@ -6,10 +6,145 @@
              xmlns:local="clr-namespace:WpfApp6.View"
                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d" d:DesignWidth="800" Height="710">
     <Grid>
-      
+        <StackPanel Margin="225,35,210,10" Width="365">
+            <Controls:MetroHeader Header="Hledání ASW akcí v DB" HorizontalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.Accent}" Margin="10">
+                <Controls:MetroHeader.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Kind="DatabaseSearch" />
+                            <TextBlock Margin="2 0 0 0"
+                                               VerticalAlignment="Center"
+                                               Text="{Binding}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </Controls:MetroHeader.HeaderTemplate>
+
+            </Controls:MetroHeader>
+
+            <TextBox x:Name="test2_Copy"
+Margin="0 0 0 10"
+                     Controls:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmdWithParameter, Mode=OneWay}"
+            Controls:TextBoxHelper.ButtonCommandParameter="{Binding Text, ElementName=test2}"
+            Controls:TextBoxHelper.Watermark="Číslo (SN) hledané akce"
+                             Controls:TextBoxHelper.ClearTextButton="True"
+
+            Controls:TextBoxHelper.SelectAllOnFocus="True" 
+                     Controls:TextBoxHelper.UseFloatingWatermark="True"
+             />
+            <TextBox x:Name="test2_Copy1"
+                             Margin="0 0 0 10"
+
+            Controls:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmdWithParameter, Mode=OneWay}"
+            Controls:TextBoxHelper.ButtonCommandParameter="{Binding Text, ElementName=test2}"
+            Controls:TextBoxHelper.Watermark="Číslo z infa"
+                             Controls:TextBoxHelper.ClearTextButton="True"
+
+                     Controls:TextBoxHelper.SelectAllOnFocus="True" 
+            Controls:TextBoxHelper.UseFloatingWatermark="True"
+             />
+            <TextBox x:Name="test2_Copy2"
+                             Margin="0 0 0 10"
+
+            Controls:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmdWithParameter, Mode=OneWay}"
+            Controls:TextBoxHelper.ButtonCommandParameter="{Binding Text, ElementName=test2}"
+            Controls:TextBoxHelper.Watermark="ID akce (php)"
+                             Controls:TextBoxHelper.ClearTextButton="True"
+
+                     Controls:TextBoxHelper.UseFloatingWatermark="True"
+             />
+
+
+            <TextBox x:Name="test2_Copy3"
+                             
+            Controls:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmdWithParameter, Mode=OneWay}"
+            Controls:TextBoxHelper.ButtonCommandParameter="{Binding Text, ElementName=test2}"
+            Controls:TextBoxHelper.Watermark="Název akce"
+            Controls:TextBoxHelper.UseFloatingWatermark="True"
+                             Controls:TextBoxHelper.ClearTextButton="True"
+             />
+
+
+            <Controls:MetroHeader Header="Hledání akce dle ostatních informací" HorizontalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.Accent}" Margin="10">
+                <Controls:MetroHeader.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Kind="AccountSearch" />
+                            <TextBlock Margin="2 0 0 0"
+                                VerticalAlignment="Center"
+                                Text="{Binding}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </Controls:MetroHeader.HeaderTemplate>
+
+            </Controls:MetroHeader>
+
+            <TextBox Margin="0 0 0 10"
+                             Controls:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
+                             Controls:TextBoxHelper.ClearTextButton="True"
+                             Controls:TextBoxHelper.UseFloatingWatermark="True"
+                             Controls:TextBoxHelper.Watermark="Search...">
+           
+              
+            </TextBox>
+            <TextBox x:Name="test2_Copy5"
+                Margin="0 0 0 10"
+
+                Controls:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmdWithParameter, Mode=OneWay}"
+                Controls:TextBoxHelper.ButtonCommandParameter="{Binding Text, ElementName=test2}"
+                Controls:TextBoxHelper.Watermark="Číslo z infa"
+                Controls:TextBoxHelper.SelectAllOnFocus="True" 
+                             Controls:TextBoxHelper.ClearTextButton="True"
+                Controls:TextBoxHelper.UseFloatingWatermark="True"
+ />
+            <TextBox x:Name="test2_Copy6"
+                Margin="0 0 0 10"
+
+                Controls:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmdWithParameter, Mode=OneWay}"
+                Controls:TextBoxHelper.ButtonCommandParameter="{Binding Text, ElementName=test2}"
+                Controls:TextBoxHelper.Watermark="ID akce (php)"
+                Controls:TextBoxHelper.UseFloatingWatermark="True"
+                             Controls:TextBoxHelper.ClearTextButton="True"
+                 />
+
+
+            <TextBox x:Name="test2_Copy7"
+                             
+                Controls:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmdWithParameter, Mode=OneWay}"
+                Controls:TextBoxHelper.ButtonCommandParameter="{Binding Text, ElementName=test2}"
+                Controls:TextBoxHelper.Watermark="Název akce"
+                Controls:TextBoxHelper.UseFloatingWatermark="True"
+                             Controls:TextBoxHelper.ClearTextButton="True"
+                 />
+            <Button Content="Hledat" Style="{DynamicResource MahApps.Styles.Button.AccentedSquare}" Height="70" Margin="0 30 0 0"  />
+            <Controls:MetroHeader Header="Historie hledání" HorizontalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.Accent}" Margin="0 30 0 0">
+                <Controls:MetroHeader.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Kind="History" />
+                            <TextBlock Margin="2 0 0 0"
+                                VerticalAlignment="Center"
+                                Text="{Binding}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </Controls:MetroHeader.HeaderTemplate>
+
+            </Controls:MetroHeader>
+
+            <ComboBox Margin="0 10 0 0"
+                              Controls:TextBoxHelper.ClearTextButton="True"
+                              Controls:TextBoxHelper.Watermark="Seznam naposledy hledaných akcí"
+                              >
+                <ComboBoxItem Content="Item 1" />
+                <ComboBoxItem Content="Item 2" />
+                <ComboBoxItem Content="Very long Item 3 for MahApps.Metro" />
+                <ComboBoxItem Content="Item 4" />
+            </ComboBox>
+
+
+        </StackPanel>
+
 
     </Grid>
 </UserControl>
