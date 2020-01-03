@@ -24,5 +24,10 @@ namespace WpfApp6.View
         {
             InitializeComponent();
         }
+
+        private void hledejakci(object sender, RoutedEventArgs e)
+        {
+            Core.hledejvsql("blabla");
+        }
     }
 }

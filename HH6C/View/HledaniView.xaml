@@ -84,7 +84,7 @@ Margin="0 0 0 10"
                              Controls:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmd, Mode=OneWay}"
                              Controls:TextBoxHelper.ClearTextButton="True"
                              Controls:TextBoxHelper.UseFloatingWatermark="True"
-                             Controls:TextBoxHelper.Watermark="Search...">
+                             Controls:TextBoxHelper.Watermark="Firma">
            
               
             </TextBox>
@@ -93,7 +93,7 @@ Margin="0 0 0 10"
 
                 Controls:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmdWithParameter, Mode=OneWay}"
                 Controls:TextBoxHelper.ButtonCommandParameter="{Binding Text, ElementName=test2}"
-                Controls:TextBoxHelper.Watermark="Číslo z infa"
+                Controls:TextBoxHelper.Watermark="Osoba"
                 Controls:TextBoxHelper.SelectAllOnFocus="True" 
                              Controls:TextBoxHelper.ClearTextButton="True"
                 Controls:TextBoxHelper.UseFloatingWatermark="True"
@@ -103,21 +103,42 @@ Margin="0 0 0 10"
 
                 Controls:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmdWithParameter, Mode=OneWay}"
                 Controls:TextBoxHelper.ButtonCommandParameter="{Binding Text, ElementName=test2}"
-                Controls:TextBoxHelper.Watermark="ID akce (php)"
+                Controls:TextBoxHelper.Watermark="Email"
                 Controls:TextBoxHelper.UseFloatingWatermark="True"
                              Controls:TextBoxHelper.ClearTextButton="True"
                  />
 
 
-            <TextBox x:Name="test2_Copy7"
+            <TextBox x:Name="test2_Copy7" Margin="0 0 0 10"
                              
                 Controls:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmdWithParameter, Mode=OneWay}"
                 Controls:TextBoxHelper.ButtonCommandParameter="{Binding Text, ElementName=test2}"
-                Controls:TextBoxHelper.Watermark="Název akce"
+                Controls:TextBoxHelper.Watermark="Telefon"
                 Controls:TextBoxHelper.UseFloatingWatermark="True"
                              Controls:TextBoxHelper.ClearTextButton="True"
                  />
-            <Button Content="Hledat" Style="{DynamicResource MahApps.Styles.Button.AccentedSquare}" Height="70" Margin="0 30 0 0"  />
+
+            <TextBox x:Name="test2_Copy8"
+                             Margin="0 0 0 10"
+                Controls:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmdWithParameter, Mode=OneWay}"
+                Controls:TextBoxHelper.ButtonCommandParameter="{Binding Text, ElementName=test2}"
+                Controls:TextBoxHelper.Watermark="Dle servisního protokolu"
+                Controls:TextBoxHelper.UseFloatingWatermark="True"
+                             Controls:TextBoxHelper.ClearTextButton="True"
+                 />
+
+            <TextBox x:Name="test2_Copy9"
+                             
+                Controls:TextBoxHelper.ButtonCommand="{Binding TextBoxButtonCmdWithParameter, Mode=OneWay}"
+                Controls:TextBoxHelper.ButtonCommandParameter="{Binding Text, ElementName=test2}"
+                Controls:TextBoxHelper.Watermark="Dle telefonické konzultace"
+                Controls:TextBoxHelper.UseFloatingWatermark="True"
+                             Controls:TextBoxHelper.ClearTextButton="True"
+                 />
+
+
+
+            <Button x:Name="BTN_hledejakci" Content="Hledat" Style="{DynamicResource MahApps.Styles.Button.AccentedSquare}" Height="70" Margin="0 30 0 0" Click="hledejakci"  />
             <Controls:MetroHeader Header="Historie hledání" HorizontalAlignment="Center" Foreground="{DynamicResource MahApps.Brushes.Accent}" Margin="0 30 0 0">
                 <Controls:MetroHeader.HeaderTemplate>
                     <DataTemplate>
