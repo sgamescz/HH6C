@@ -453,8 +453,8 @@ try
             string vysledek = "";
             string url = "";
 
-            if (odkud == "Praha") { url = @"https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + GPS + "&destinations=K Hájům 2671/8,Praha&mode=car&language=cs-CZ&key=AIzaSyDe2K0EFQtR21phmbEYOAxiYb2wEtkdSxA";}
-            if (odkud == "Olomouc") { url = @"https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + GPS + "&destinations=Wittgensteinova 10, Olomouc&mode=car&language=cs-CZ&key=AIzaSyDe2K0EFQtR21phmbEYOAxiYb2wEtkdSxA"; }
+            if (odkud == "Praha") { url = @"https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + GPS + "&destinations=K Hájům 2671/8,Praha&mode=car&language=cs-CZ";}
+            if (odkud == "Olomouc") { url = @"https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + GPS + "&destinations=Wittgensteinova 10, Olomouc&mode=car&language=cs-CZ"; }
 
             Console.WriteLine(url);
             WebRequest request = WebRequest.Create(url);
