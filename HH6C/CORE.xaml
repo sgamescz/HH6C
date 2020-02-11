@@ -1,14 +1,13 @@
-<Controls:MetroWindow x:Name="core" x:Class="WpfApp6.Core"
+<Controls:MetroWindow x:Class="HH6C.CORE"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:v="clr-namespace:WpfApp6.View"
-                      
+        xmlns:views="clr-namespace:HH6C.View"
         mc:Ignorable="d"
-        Title="HelpdeskA" Height="772" Width="949" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        Title="HelpdeskA" Height="772" Width="949" WindowStartupLocation="CenterScreen" WindowState="Maximized" Closing="core_Closing">
 
     <Window.Resources>
 
@@ -74,12 +73,12 @@
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
             <Label>Change color</Label>
-            <Button Click="zmenbarvupozadi"  >
+            <Button Click="CLICK_changeforeground">
                 <StackPanel Orientation="Horizontal">
                     <iconPacks:PackIconOcticons Kind="Paintcan"  Width="24" Height="24"/>
                 </StackPanel>
             </Button>
-            <Button Click="zmenbarvupopredi" >
+            <Button Click="CLICK_changebackground" >
                 <StackPanel Orientation="Horizontal">
                     <iconPacks:PackIconModern Kind="DrawBrushReflection" Width="24" Height="24"/>
                 </StackPanel>
@@ -102,8 +101,9 @@
                                       DisplayMode="CompactInline"
                                     HamburgerWidth="64"
                                     IsPaneOpen="False" 
+                                
                                     CompactPaneLength="64"
-                                SelectedIndex="0"
+                                SelectedIndex="{Binding vybranyindexvhamburgeru}"
                                     ItemInvoked="HamburgerMenuControl_OnItemInvoked"
 
                                     ItemTemplate="{StaticResource MenuItemTemplateIC}"
@@ -126,43 +126,45 @@
             <Controls:HamburgerMenu.ItemsSource>
                 <Controls:HamburgerMenuItemCollection>
 
-                    <Controls:HamburgerMenuIconItem Command="{Binding OpenHledaniViewModelCommand}" Label="Hledat akci">
+                    <Controls:HamburgerMenuIconItem Label="Hledat akci">
                         <Controls:HamburgerMenuIconItem.Icon>
                             <iconPacks:PackIconOcticons Kind="Search" />
                         </Controls:HamburgerMenuIconItem.Icon>
                         <Controls:HamburgerMenuIconItem.Tag>
-                            <v:HledaniView />
+                            <views:HledaniView/>
                         </Controls:HamburgerMenuIconItem.Tag>
 
                     </Controls:HamburgerMenuIconItem>
 
-                    <Controls:HamburgerMenuIconItem Command="{Binding OpenSecondViewModelCommand}" Label="Info o akci">
+                    <Controls:HamburgerMenuIconItem Label="Info o akci">
                         <Controls:HamburgerMenuIconItem.Icon>
                             <iconPacks:PackIconModern Kind="Information" />
                         </Controls:HamburgerMenuIconItem.Icon>
                         <Controls:HamburgerMenuIconItem.Tag>
-                            <v:FirstView/>
+                            <views:Akce/>
                         </Controls:HamburgerMenuIconItem.Tag>
 
                     </Controls:HamburgerMenuIconItem>
 
-                    <Controls:HamburgerMenuIconItem Command="{Binding OpenFirstViewModelCommand}" Label="Telefonické konzultace">
+                    <Controls:HamburgerMenuIconItem  Label="Telefonické konzultace">
                         <Controls:HamburgerMenuIconItem.Icon>
                             <iconPacks:PackIconMaterialLight Kind="Phone" />
                         </Controls:HamburgerMenuIconItem.Icon>
                         <Controls:HamburgerMenuIconItem.Tag>
-                            <v:SecondView/>
+                            <views:SecondView/>
                         </Controls:HamburgerMenuIconItem.Tag>
 
                     </Controls:HamburgerMenuIconItem>
 
 
-                    <Controls:HamburgerMenuIconItem Command="{Binding OpenRozvrhViewModelCommand}" Label="Workzilla">
+                    <Controls:HamburgerMenuIconItem  Label="Workzilla">
+
+                        
                         <Controls:HamburgerMenuIconItem.Icon>
                             <iconPacks:PackIconModern Kind="Bug" />
                         </Controls:HamburgerMenuIconItem.Icon>
                         <Controls:HamburgerMenuIconItem.Tag>
-                            <v:RozvrhView />
+                            <views:RozvrhView />
                         </Controls:HamburgerMenuIconItem.Tag>
 
                     </Controls:HamburgerMenuIconItem>
@@ -202,7 +204,7 @@
                             <iconPacks:PackIconMaterialLight Kind="NoteText" />
                         </Controls:HamburgerMenuIconItem.Icon>
                         <Controls:HamburgerMenuIconItem.Tag>
-                            <v:FirstView/>
+                            <views:FirstView/>
                         </Controls:HamburgerMenuIconItem.Tag>
 
                     </Controls:HamburgerMenuIconItem>
@@ -213,42 +215,37 @@
 
 
             <!--  Content  -->
-            <Controls:HamburgerMenu.ContentTemplate>
-                <DataTemplate>
-                    <Grid x:Name="ContentGrid">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="48" />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
+            <Controls:HamburgerMenu.Content>
+                <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
+
+                    <Grid x:Name="ContentGrid" Margin="0 0 0 0" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="48" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
                         <Controls:TransitioningContentControl Grid.Row="0"
-                                    Margin="20 5 -1 0"
-                                                                      Transition="RightReplace"  
-                                    Background="{DynamicResource MahApps.Brushes.WhiteColor}"  FontSize="24"
-                                           Foreground="{DynamicResource MahApps.Brushes.Accent}" Content="{Binding Label}">
-
-
-                        </Controls:TransitioningContentControl>
+                                                          Margin="20,5,-1,0"
+                                                          Background="{DynamicResource MahApps.Brushes.WhiteColor}"
+                                                          Content="{Binding ElementName=HamburgerMenuControl, Path=SelectedItem.Label}"
+                                                          FontSize="24"
+                                                          Foreground="{DynamicResource MahApps.Brushes.Accent}"
+                                                          Transition="RightReplace" />
 
 
                         <Controls:TransitioningContentControl Grid.Row="1"
-                                                                  Content="{Binding Tag }"
-                                                                  RestartTransitionOnContentChange="True"
-                                                                  Transition="Down"      
-                                                                      Margin="20 10 0 0"
-                                                                      >
+                                                          Margin="20,10,0,0"
+                                                          Content="{Binding ElementName=HamburgerMenuControl, Path=SelectedItem.Tag}"
+                                                          RestartTransitionOnContentChange="True"
+                                                          Transition="Down" />
 
-
-                        </Controls:TransitioningContentControl>
-
-
-                    </Grid>
-
-                </DataTemplate>
-
-            </Controls:HamburgerMenu.ContentTemplate>
                 
+                </Grid>
+                </ScrollViewer>
+            </Controls:HamburgerMenu.Content>
+
         </Controls:HamburgerMenu>
+      
     </Grid>
 
 

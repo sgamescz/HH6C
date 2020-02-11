@@ -1,0 +1,457 @@
+﻿<UserControl x:Class="HH6C.View.Akce"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HH6C.View"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d">
+
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="LargeTileStyle" TargetType="Controls:Tile">
+                <Setter Property="Height" Value="125" />
+                <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+                <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+                <Setter Property="TitleFontSize" Value="14" />
+                <Setter Property="Width" Value="300" />
+            </Style>
+
+            
+            
+            
+            <Style x:Key="ExtraLargeTileStyle" TargetType="Controls:Tile">
+                <Setter Property="Height" Value="125" />
+                <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+                <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+                <Setter Property="TitleFontSize" Value="14" />
+                <Setter Property="Width" Value="454" />
+            </Style>
+
+            <Style x:Key="SmallTileStyle" TargetType="Controls:Tile">
+                <Setter Property="Height" Value="125" />
+                <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+                <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+                <Setter Property="TitleFontSize" Value="14" />
+                <Setter Property="Width" Value="147" />
+            </Style>
+
+            <Style x:Key="extraSmallTileStyle" TargetType="Controls:Tile">
+                <Setter Property="Height" Value="105" />
+                <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+                <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+                <Setter Property="TitleFontSize" Value="12" />
+                <Setter Property="CountFontSize" Value="18" />
+                <Setter Property="Width" Value="147" />
+            </Style>
+
+            <Style x:Key="sekceheader" TargetType="Label">
+                <Setter Property="FontSize" Value="25" />
+                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.AccentBase}" />
+            </Style>
+
+            <Style x:Key="zalozka" TargetType="TextBlock">
+
+                <Style.Triggers>
+                    <Trigger Property ="IsMouseOver" Value="True">
+                        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.AccentBase}" />
+                    </Trigger>
+                </Style.Triggers>
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="Margin" Value="10 10 10 10" />
+
+            </Style>
+
+            <Style x:Key="zalozkatabitem" TargetType="TabItem">
+
+                <Style.Triggers>
+                    <Trigger Property ="IsSelected" Value="True">
+                        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.AccentBase}" />
+                        <Setter Property="Background" Value="Orange" />
+                    </Trigger>
+                    <Trigger Property ="IsSelected" Value="False">
+                        <Setter Property="Foreground" Value="Blue" />
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="BorderThickness" Value="10" />
+
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+
+            <Style x:Key="MyStyle" TargetType="{x:Type Button}">
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0 0 0 3"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="BorderBrush" Value="Orange" />
+                    </Trigger>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter Property="BorderBrush" Value="{DynamicResource pressed}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+
+            <Style x:Key="ButtonEnabledStyle" TargetType="Button" BasedOn="{StaticResource MahApps.Styles.Button.Circle}">
+                <Setter Property="Opacity" Value="1.0" />
+                <Style.Triggers>
+                    <Trigger Property="IsEnabled" Value="True" >
+                        <Setter Property="Opacity" Value="0.1" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            
+            
+            <Style x:Key="typss" TargetType="{x:Type Button}" BasedOn="{StaticResource MahApps.Styles.Button.Circle}">
+                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Black}" />
+                <Style.Triggers>
+                    <Trigger Property="IsEnabled" Value="False" >
+                        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.White}" />
+                        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Badged.DisabledBackground}" />
+                    </Trigger>
+                </Style.Triggers>
+
+            </Style>
+
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="Auto" />
+
+        </Grid.RowDefinitions>
+
+
+        <StackPanel  Margin="0 0 50 0">
+            <WrapPanel Grid.Row="0"
+                   
+                   Grid.Column="0"
+                   Width="1100"
+                   HorizontalAlignment="left"
+                   >
+                <Controls:Tile Name="tile_nazevakce" 
+                Title="{Binding BIND_CISLAAKCE}"
+                           Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource MahApps.Brushes.Black}"
+                           HorizontalTitleAlignment="Left"
+                           Count="{Binding BIND_NAZEVAKCE}"
+                           CountFontSize="25"
+                           Style="{StaticResource ExtraLargeTileStyle}" >
+
+                </Controls:Tile>
+
+                <Controls:Tile Title="Servisní smlouva" Name="title_smlouva"
+                         
+                           Count="{Binding BIND_TYPSS}"
+                           CountFontSize="25"
+                           HorizontalTitleAlignment="Center"
+                           IsEnabled="True"
+                           Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource MahApps.Brushes.Black}"
+                           Style="{StaticResource LargeTileStyle}"
+                          
+                           />
+             
+              
+
+                <Controls:Tile Title="{Binding BIND_TYPSW}" Name="title_septim"
+                         Count=""
+                           CountFontSize="25"
+                           HorizontalTitleAlignment="Center"
+                           IsEnabled="True"
+                           Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource MahApps.Brushes.Black}"
+                           Style="{StaticResource SmallTileStyle}">
+                    
+                    <iconPacks:PackIconFontAwesome Kind="CodeBranchSolid" Width="40" Height="40" />
+                </Controls:Tile>
+
+                <Controls:Tile Title="{Binding BIND_TYPPROVOZU}" Name="title_typ"
+                           CountFontSize="25"
+                           HorizontalTitleAlignment="Center"
+                           IsEnabled="True"
+                           Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource MahApps.Brushes.Black}"
+                           Style="{StaticResource SmallTileStyle}">
+                    <iconPacks:PackIconBoxIcons Kind="SolidBuildingHouse" Width="40" Height="40" />
+                </Controls:Tile>
+                <Controls:Tile Title="{Binding BIND_STAVAKCE}" Name="title_stavakce"
+                           
+                                  Background="{DynamicResource MahApps.Brushes.Accent2}"
+                           Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource MahApps.Brushes.Black}"
+                           Style="{StaticResource SmallTileStyle}">
+                    <iconPacks:PackIconMaterial Kind="ShieldHomeOutline" Width="40" Height="40"/>
+                </Controls:Tile>
+
+                <Controls:Tile Title="{Binding BIND_ADRESA}" Name="title_adresa"
+                           Margin="3"
+                           Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource MahApps.Brushes.Black}"
+                           Style="{StaticResource LargeTileStyle}"
+                           >
+
+                    <iconPacks:PackIconFontAwesome Kind="MapMarkedAltSolid" Width="40" Height="40" />
+                </Controls:Tile>
+
+
+
+
+                <Controls:Tile Title="{Binding gpsprahacas}" Name="title_praha"
+                            Count="{Binding gpsprahavzdalenost}"
+                            Style="{StaticResource SmallTileStyle}"
+                            Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource MahApps.Brushes.Black}"
+                            >
+                </Controls:Tile>
+
+                <Controls:Tile Title="{Binding gpsolomouccas}" Name="title_olomouc"
+                           Count="{Binding gpsolomoucvzdalenost}"
+                           Background="{DynamicResource MahApps.Brushes.AccentBase}"
+                            Style="{StaticResource SmallTileStyle}"
+                            Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource MahApps.Brushes.Black}"
+                            >
+                </Controls:Tile>
+               
+
+              
+
+
+
+
+
+
+                <Controls:FlipView x:Name="FlipViewTest" Width="307" Height="133" Foreground="{DynamicResource MahApps.Brushes.Black}" IsBannerEnabled="False"   >
+                    <Controls:FlipView.Items>
+                        
+                        <Grid Background="{DynamicResource MahApps.Brushes.Accent}" >
+                            <iconPacks:PackIconFontAwesome Kind="HeadsetSolid" Width="40"
+                                      Height="40"
+                                        Foreground="{DynamicResource MahApps.Brushes.Black}"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center" />
+                            <Label Content="{Binding BIND_POSLEDNITK}" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Foreground="{DynamicResource MahApps.Brushes.Black}"/>
+                        </Grid>
+                        <Grid Background="{DynamicResource MahApps.Brushes.Accent}">
+                            <iconPacks:PackIconFontAwesome Kind="BriefcaseSolid" Width="40"
+                                      Height="40"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                       Foreground="{DynamicResource MahApps.Brushes.Black}"                    
+                                      />
+                            <Label Content="{Binding BIND_POSLEDNISZ}" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Foreground="{DynamicResource MahApps.Brushes.Black}"/>
+                        </Grid>
+                    </Controls:FlipView.Items>
+                </Controls:FlipView>
+            </WrapPanel>
+        </StackPanel>
+
+
+        <Grid  Grid.Column="0" Grid.Row="1" >
+            <Controls:MetroAnimatedTabControl  Controls:TabControlHelper.Underlined="TabPanel" Controls:TabControlHelper.Transition="Down" Controls:TabControlHelper.UnderlinePlacement="Bottom" Margin="0,0,0,0">
+
+
+
+                <TabItem Header="Přehled" Padding="10"  Controls:HeaderedControlHelper.HeaderFontSize="20">
+          
+
+                    <Grid x:Name="gridpokus">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Label  Content="Smlouvy"  Style="{StaticResource sekceheader}" Grid.Row="0" Grid.Column="0" />
+                        <WrapPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Margin="20 0 0 0">
+                            <Button  Margin="5" Width="50" Height="50"
+                                 Style="{StaticResource typss}"
+                                     IsEnabled="{Binding bind_S20}"
+                                     >
+                                S20
+                            </Button>
+                            <Button  Margin="5" Width="50" Height="50"
+                             Style="{StaticResource typss}"
+                                     IsEnabled="{Binding bind_S19}"
+                                     
+                                     >
+                                S19
+                            </Button>
+                            <Button  Margin="5" Width="50" Height="50"
+                              Style="{StaticResource typss}"
+                                     IsEnabled="{Binding bind_S18}"
+                                     >
+                                S18
+                            </Button>
+                            <Button  Margin="5" Width="50" Height="50"
+                                                            Style="{StaticResource typss}"
+                                     IsEnabled="{Binding bind_S17}"
+
+                                     >
+                                S17
+                            </Button>
+                            <Button  Margin="5" Width="50" Height="50"
+                                                              Style="{StaticResource typss}"
+                                     IsEnabled="{Binding bind_S16}"
+
+                                     >
+                                S16
+                            </Button>
+                            <Button  Margin="5" Width="50" Height="50"
+                                                             Style="{StaticResource typss}"
+                                     IsEnabled="{Binding bind_S15}"
+
+                                     >
+                                S15
+                            </Button>
+                            <Button  Margin="5" Width="50" Height="50"
+                                                           Style="{StaticResource typss}"
+                                     IsEnabled="{Binding bind_S14}"
+
+                                     >
+                                S14
+                            </Button>
+                            <Button  Margin="5" Width="50" Height="50"
+                                                          Style="{StaticResource typss}"
+                                     IsEnabled="{Binding bind_S13}"
+
+                                     >
+                                S13
+                            </Button>
+                            <Button  Margin="5" Width="50" Height="50"
+                                                              Style="{StaticResource typss}"
+                                     IsEnabled="{Binding bind_S12}"
+
+                                     >
+                                S12
+                            </Button>
+
+                        </WrapPanel>
+                        <Label  Content="Popis akce"  Style="{StaticResource sekceheader}" Grid.Row="3" Grid.Column="0" />
+                        <TextBox   x:Name="akceinfo_zaklinfo" IsEnabled="True" IsReadOnly="True" Text="---" BorderThickness="0" FontSize="16" Grid.Row="4" Grid.Column="0" />
+
+                        <TextBox Grid.Row="5" x:Name="hledaneid" Controls:TextBoxHelper.Watermark="This is a textbox" Height="26" Width="165" Margin="10,0,1156,1" x:FieldModifier="public" Text="0" />
+                        <Button Grid.Row="5" Content="Button"  Width="75" Click="Button_Click_1" Margin="180,0,1076,5"/>
+                     
+
+
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="Detail" Padding="10"  Controls:HeaderedControlHelper.HeaderFontSize="20">
+
+                    <Grid>
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+                                <WrapPanel  Grid.Row="0" Grid.Column="0" Orientation="Vertical">
+                                   
+                                </WrapPanel>
+                                <WrapPanel  Grid.Row="0" Grid.Column="1" Orientation="Vertical">
+                                    <Label  Content="Adresy a kontaktní údaje"  Style="{StaticResource sekceheader}" />
+                                    <TextBox   x:Name="akceinfo_adresy" IsEnabled="True" IsReadOnly="True" Text="---" BorderThickness="0"  />
+                                </WrapPanel>
+                                <WrapPanel  Grid.Row="1" Grid.Column="0" Orientation="Vertical">
+                                    <Label  Content="Zařazení"  Style="{StaticResource sekceheader}" />
+                                    <TextBox   x:Name="akceinfo_zarazeni" IsEnabled="True" IsReadOnly="True" Text="---" BorderThickness="0"  />
+                                </WrapPanel>
+                            </Grid>
+
+                            <Label Content="Popis instalace"  Style="{StaticResource sekceheader}" />
+                            <TextBox  x:Name="akceinfo" IsEnabled="True" IsReadOnly="True" Text="---" BorderThickness="0"  />
+                            <Label Content="RAS"  Style="{StaticResource sekceheader}"/>
+                            <TextBox  x:Name="akceinfo2" IsEnabled="True" IsReadOnly="True" Text="---" BorderThickness="0" />
+                            <Label Content="Popis sítě" Style="{StaticResource sekceheader}"/>
+                            <TextBox  x:Name="akceinfo3" IsEnabled="True" IsReadOnly="True" Text="---" BorderThickness="0" />
+
+
+                        </StackPanel>
+                       
+
+                    </Grid>
+                </TabItem >
+
+                <TabItem Header="Volání" Padding="10"  Controls:HeaderedControlHelper.HeaderFontSize="20" >
+                  
+                    <Grid >
+                        <CheckBox Content="Chci zvuky" HorizontalAlignment="Left" Margin="360,115,0,0" VerticalAlignment="Top" Height="30" Width="115" IsChecked="True"/>
+                        <Controls:ProgressRing Foreground="{DynamicResource MahApps.Brushes.Accent}" Margin="227,115,832,917"/>
+                        <Slider  HorizontalAlignment="Left" Margin="155,171,0,0" VerticalAlignment="Top" Height="55" Width="425" />
+                        <Expander Header="Expander" HorizontalAlignment="Left" Height="100" Margin="325,56,0,0" VerticalAlignment="Top" Width="100">
+                            <Grid Background="#FFE5E5E5">
+                                <TextBox Height="10" Text="ahoj" Margin="0,20,0,19"/>
+                            </Grid>
+                        </Expander>
+                        <Controls:Badged Badge=" Tady " BadgePlacementMode="TopRight" Margin="555,70,72,224">
+                            <Button Content="ahoj" Style="{DynamicResource MahApps.Styles.Button.AccentedSquare}" />
+                        </Controls:Badged>
+                    </Grid>
+                </TabItem>
+
+                <TabItem Header="TODO" Padding="10"  Controls:HeaderedControlHelper.HeaderFontSize="20">
+                    <Grid >
+                        <CheckBox Content="Chci zvuky" HorizontalAlignment="Left" Margin="360,115,0,0" VerticalAlignment="Top" Height="30" Width="115" IsChecked="True"/>
+                        <Controls:ProgressRing Foreground="{DynamicResource MahApps.Brushes.Accent}" Margin="185,66,1100,966"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Servisní protokoly" Padding="10" Controls:HeaderedControlHelper.HeaderFontSize="20" >
+                    <Grid >
+                        <CheckBox Content="Chci zvuky" HorizontalAlignment="Left" Margin="360,115,0,0" VerticalAlignment="Top" Height="30" Width="115" IsChecked="True"/>
+                        <Controls:ProgressRing Foreground="{DynamicResource MahApps.Brushes.Accent}" Margin="227,115,832,917"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Workzilla" Padding="10"  Controls:HeaderedControlHelper.HeaderFontSize="20">
+                    <Grid >
+                        <CheckBox Content="Chci zvuky" HorizontalAlignment="Left" Margin="360,115,0,0" VerticalAlignment="Top" Height="30" Width="115" IsChecked="True"/>
+                        <Controls:ProgressRing Foreground="{DynamicResource MahApps.Brushes.Accent}" Margin="227,115,832,917"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="wiki" Padding="10"  Controls:HeaderedControlHelper.HeaderFontSize="20">
+                    <Grid >
+                        <CheckBox Content="Chci zvuky" HorizontalAlignment="Left" Margin="360,115,0,0" VerticalAlignment="Top" Height="30" Width="115" IsChecked="True"/>
+                        <Controls:ProgressRing Foreground="{DynamicResource MahApps.Brushes.Accent}" Margin="227,115,832,917"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Filearchive" Padding="10"  Controls:HeaderedControlHelper.HeaderFontSize="20">
+                    <Grid >
+                        <CheckBox Content="Chci zvuky" HorizontalAlignment="Left" Margin="360,115,0,0" VerticalAlignment="Top" Height="30" Width="115" IsChecked="True"/>
+                        <Controls:ProgressRing Foreground="{DynamicResource MahApps.Brushes.Accent}" Margin="227,115,832,917"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="založení WZ,SP,SZ" Padding="10"  Controls:HeaderedControlHelper.HeaderFontSize="20">
+                    <Grid >
+                        <CheckBox Content="Chci zvuky" HorizontalAlignment="Left" Margin="360,115,0,0" VerticalAlignment="Top" Height="30" Width="115" IsChecked="True"/>
+                        <Controls:ProgressRing Foreground="{DynamicResource MahApps.Brushes.Accent}" Margin="227,115,832,917"/>
+                    </Grid>
+                </TabItem>
+
+
+
+
+
+
+            </Controls:MetroAnimatedTabControl>
+        </Grid>
+
+    </Grid>
+
+
+</UserControl>

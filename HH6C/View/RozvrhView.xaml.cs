@@ -12,14 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using HH6C.Model;
 
-namespace WpfApp6.View
+namespace HH6C.View
 {
     /// <summary>
     /// Interakční logika pro RozvrhView.xaml
     /// </summary>
     public partial class RozvrhView : UserControl
     {
+        private ViewModel VM => this.DataContext as ViewModel;
+
         public RozvrhView()
         {
             InitializeComponent();

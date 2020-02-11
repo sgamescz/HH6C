@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="WpfApp6.View.RozvrhView"
+﻿<UserControl x:Class="HH6C.View.RozvrhView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WpfApp6.View"
+             xmlns:local="clr-namespace:HH6C.View"
                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
@@ -20,7 +20,7 @@
                                               Kind="Places"  
                                               
                                        />
-                    <TextBox Width="200" Height="20" Text="Ahoj" Margin="296,111,263,245"></TextBox>
+                    <TextBox Width="200" Height="20" Text="{Binding SomeText}" Margin="296,111,263,245"></TextBox>
                 </Grid>
                 <Grid Background="#00A600">
                     <iconPacks:PackIconModern Width="60"

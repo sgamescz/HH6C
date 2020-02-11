@@ -14,124 +14,64 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 using System.Data.SQLite;
+using HH6C.View;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using HH6C.Model;
 
-
-namespace WpfApp6
+namespace HH6C
 {
     /// <summary>
     /// Interakční logika pro MainWindow.xaml
     /// </summary>
-    public partial class Core : MetroWindow
+    /// 
+
+    public partial class CORE : MetroWindow
     {
-        string[] barva = new string[] { "Red", "Green", "Blue", "Purple", "Orange", "Lime", "Emerald", "Teal", "Cyan", "Cobalt", "Indigo", "Violet", "Pink", "Magenta", "Crimson", "Amber", "Yellow", "Brown", "Olive", "Steel", "Mauve", "Taupe", "Sienna" };
-        string[] pozadi = new string[] { "Light", "Dark" };
-        int pouzitabarva = 1;
-        int pouzitepozadi = 1;
+
+        private ViewModel VM => this.DataContext as ViewModel;
 
 
 
-        public Core()
+        public CORE()
         {
 
+            this.DataContext = new ViewModel();
             InitializeComponent();
-
-            MahApps.Metro.ThemeManager.ChangeTheme(Application.Current, pozadi[pouzitepozadi], barva[pouzitabarva]);
+            VM.SQL_OPENCONNECTION("SQLITE");
+            VM.SQL_OPENCONNECTION("SYBASE");
+            VM.SQL_READDATA("SQLITE", "select hodnota from nastaveni where polozka='pozadi'", "pozadi");
+            VM.SQL_READDATA("SQLITE", "select hodnota from nastaveni where polozka='popredi' ", "popredi");
+            //MahApps.Metro.ThemeManager.ChangeTheme(Application.Current, pozadi[pouzitepozadi], barva[pouzitabarva]);
+            
         }
 
-        private void zmenbarvupopredi(object sender, RoutedEventArgs e)
-        {
-            pouzitabarva = pouzitabarva + 1;
-            if (pouzitabarva == 23)
-            {
-                pouzitabarva = 0;
-            }
 
-            MahApps.Metro.ThemeManager.ChangeTheme(Application.Current, pozadi[pouzitepozadi], barva[pouzitabarva]);
-        }
+
 
         private void HamburgerMenuControl_OnItemInvoked(object sender, HamburgerMenuItemInvokedEventArgs e)
         {
-            this.HamburgerMenuControl.Content = e.InvokedItem;
+            //this.HamburgerMenuControl.Content = e.InvokedItem;
             //this.HamburgerMenuControl.DataContext = Pohledy.Test.DataContextProperty;
-
         }
 
 
 
-        static public void hledejvsql(string text)
+
+
+        public void test()
         {
-            MessageBox.Show("delam sql" + text);
-            SQLiteConnection sqlite_conn;
-            sqlite_conn = CreateConnection();
-            ReadData(sqlite_conn);
-
-                   }
-
-
-
-        static SQLiteConnection CreateConnection()
-        {
-
-            SQLiteConnection sqlite_conn;
-            // Create a new database connection:
-            string path = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            var directory = System.IO.Path.GetDirectoryName(path);
-            sqlite_conn = new SQLiteConnection("Data Source=" + directory + "/db/data.db;");
-            // Open the connection:
-            MessageBox.Show(directory + "/db/data.db;");
-         try
-            {
-                sqlite_conn.Open();
-
-            }
-            catch (SQLiteException myException)
-            {
-                MessageBox.Show("Message: " + myException.Message + "\n");
-            }
-            return sqlite_conn;
         }
 
 
-        static void InsertData(SQLiteConnection conn)
+        private void CLICK_changeforeground(object sender, RoutedEventArgs e)
         {
-            SQLiteCommand sqlite_cmd;
-            sqlite_cmd = conn.CreateCommand();
-            sqlite_cmd.CommandText = "INSERT INTO SampleTable (Col1, Col2) VALUES('Test Text ', 1); ";
-         sqlite_cmd.ExecuteNonQuery();
-            sqlite_cmd.CommandText = "INSERT INTO SampleTable (Col1, Col2) VALUES('Test1 Text1 ', 2); ";
-         sqlite_cmd.ExecuteNonQuery();
-            sqlite_cmd.CommandText = "INSERT INTO SampleTable (Col1, Col2) VALUES('Test2 Text2 ', 3); ";
-         sqlite_cmd.ExecuteNonQuery();
-            sqlite_cmd.CommandText = "INSERT INTO SampleTable1 (Col1, Col2) VALUES('Test3 Text3 ', 3); ";
-         sqlite_cmd.ExecuteNonQuery();
-
+            VM.Function_global_changeforeground = VM.Function_global_changeforeground + 1;
         }
 
-
-        static void ReadData(SQLiteConnection conn)
+        private void CLICK_changebackground(object sender, RoutedEventArgs e)
         {
-            SQLiteDataReader sqlite_datareader;
-            SQLiteCommand sqlite_cmd;
-            sqlite_cmd = conn.CreateCommand();
-            sqlite_cmd.CommandText = "SELECT name FROM teams";
-
-            try
-            {
-                sqlite_datareader = sqlite_cmd.ExecuteReader();
-                while (sqlite_datareader.Read())
-                {
-                    string myreader = sqlite_datareader.GetString(0);
-                    Console.WriteLine(myreader);
-                    MessageBox.Show(myreader);
-                }
-            }
-            catch (SQLiteException myException)
-            {
-                MessageBox.Show("Message: " + myException.Message + "\n");
-            }
-
-            conn.Close();
-
+            VM.Function_global_changebackground = VM.Function_global_changebackground + 1;
 
         }
 
@@ -139,21 +79,18 @@ namespace WpfApp6
 
 
 
-        private void zmenbarvupozadi(object sender, RoutedEventArgs e)
+
+
+        private void core_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
-            pouzitepozadi = pouzitepozadi + 1;
-
-
-            if (pouzitepozadi == 2)
-            {
-                pouzitepozadi = 0;
-            }
-
-            MahApps.Metro.ThemeManager.ChangeTheme(Application.Current, pozadi[pouzitepozadi].ToString(), barva[pouzitabarva].ToString());
-
+            VM.SQL_CLOSECONNECTION("SQLITE");
+            VM.SQL_CLOSECONNECTION("SYBASE");
         }
 
+
+
+
+       
 
     }
 }
