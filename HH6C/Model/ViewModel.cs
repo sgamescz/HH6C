@@ -20,7 +20,7 @@ namespace HH6C.Model
     {
         SQLiteConnection m_SQLITEdbConnection;
         OdbcConnection m_SYBASEconnection;
-        
+
         string[] barva = new string[] { "Red", "Green", "Blue", "Purple", "Orange", "Lime", "Emerald", "Teal", "Cyan", "Cobalt", "Indigo", "Violet", "Pink", "Magenta", "Crimson", "Amber", "Yellow", "Brown", "Olive", "Steel", "Mauve", "Taupe", "Sienna" };
         string[] pozadi = new string[] { "Light", "Dark" };
         int pouzitabarva = 1;
@@ -29,6 +29,24 @@ namespace HH6C.Model
         int INTERNIAKCEID_int = 1;
         bool bind_hledanichecked_value = false;
 
+        string BIND_NAZEVAKCE_value = "--- NAZEVAKCE --- ";
+        string BIND_CISLAAKCE_value = "--- CISLAAKCE ---";
+        bool bind_S20_value = false;
+        bool bind_S19_value = false;
+        bool bind_S18_value = false;
+        bool bind_S17_value = false;
+        bool bind_S16_value = false;
+        bool bind_S15_value = false;
+        bool bind_S14_value = false;
+        bool bind_S13_value = false;
+        bool bind_S12_value = false;
+        string BIND_TYPSS_value = "--- TYPSS ---";
+        string BIND_STAVAKCE_value = "--- STAVAKCE ---";
+        string BIND_TYPSW_value = "--- TYPSW ---";
+        string BIND_TYPPROVOZU_value = "--- TYPPROVOZU ---";
+        string BIND_POSLEDNISZ_value = "--- POSLEDNISZ ---";
+        string BIND_POSLEDNITK_value = "--- POSLEDNITK ---";
+        string BIND_ADRESA_value = "--- ADRESA ---";
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -41,137 +59,64 @@ namespace HH6C.Model
             }
         }
 
+
+
         #region SS bubliny
 
         public bool bind_S20
         {
-            get {
-
-                if (IDAKCE_int > 1) { 
-                Boolean vysledek = false;
-                if (SQL_READDATA("SYBASE", "select A.NETJMENO from akce_akcepocitac_v A left outer join AKCE_REGINFO_V R on R._MASTERID = A._MASTERID  where A.netjmeno='_S20' and R.SERNR='" + IDAKCE + "'", "console") == "_S20")
-                {vysledek = true;};
-                return vysledek;}
-            else{ return false; }
-        }
+            get { return bind_S20_value; }
+            set { bind_S20_value = value; OnPropertyChanged("bind_S20"); }
         }
 
         public bool bind_S19
         {
-            get
-            {
-                if (IDAKCE_int > 1)
-                {
-
-                    Boolean vysledek = false;
-                    if (SQL_READDATA("SYBASE", "select A.NETJMENO from akce_akcepocitac_v A left outer join AKCE_REGINFO_V R on R._MASTERID = A._MASTERID  where A.netjmeno='_S19' and R.SERNR='" + IDAKCE + "'", "console") == "_S19")
-                    { vysledek = true; };
-                    return vysledek;
-                }
-                else { return false; }
-            }
+            get { return bind_S19_value; }
+            set { bind_S19_value = value; OnPropertyChanged("bind_S19"); }
         }
+
         public bool bind_S18
         {
-            get
-            {
-                if (IDAKCE_int > 1)
-                {
-
-                Boolean vysledek = false;
-                if (SQL_READDATA("SYBASE", "select A.NETJMENO from akce_akcepocitac_v A left outer join AKCE_REGINFO_V R on R._MASTERID = A._MASTERID  where A.netjmeno='_S18' and R.SERNR='" + IDAKCE + "'", "console") == "_S18")
-                { vysledek = true; };
-                return vysledek;
-                }
-                else { return false; }
-
-            }
+            get { return bind_S18_value; }
+            set { bind_S18_value = value; OnPropertyChanged("bind_S18"); }
         }
+
         public bool bind_S17
         {
-            get
-            {
-                if (IDAKCE_int > 1)
-                {
-                    Boolean vysledek = false;
-                if (SQL_READDATA("SYBASE", "select A.NETJMENO from akce_akcepocitac_v A left outer join AKCE_REGINFO_V R on R._MASTERID = A._MASTERID  where A.netjmeno='_S17' and R.SERNR='" + IDAKCE + "'", "console") == "_S17")
-                { vysledek = true; };
-                return vysledek;
-            }
-                else { return false; }
-
+            get { return bind_S17_value; }
+            set { bind_S17_value = value; OnPropertyChanged("bind_S17"); }
         }
-    }
+
         public bool bind_S16
         {
-            get
-            {
-                if (IDAKCE_int > 1)
-                {
-                    Boolean vysledek = false;
-                if (SQL_READDATA("SYBASE", "select A.NETJMENO from akce_akcepocitac_v A left outer join AKCE_REGINFO_V R on R._MASTERID = A._MASTERID  where A.netjmeno='_S16' and R.SERNR='" + IDAKCE + "'", "console") == "_S16")
-                { vysledek = true; };
-                return vysledek;
-                }
-                else { return false; }
-            }
+            get { return bind_S16_value; }
+            set { bind_S16_value = value; OnPropertyChanged("bind_S16"); }
         }
+
         public bool bind_S15
         {
-            get
-            {
-                if (IDAKCE_int > 1)
-                {
-                    Boolean vysledek = false;
-                if (SQL_READDATA("SYBASE", "select A.NETJMENO from akce_akcepocitac_v A left outer join AKCE_REGINFO_V R on R._MASTERID = A._MASTERID  where A.netjmeno='_S15' and R.SERNR='" + IDAKCE + "'", "console") == "_S15")
-                { vysledek = true; };
-                return vysledek;
-            }
-                else { return false; }
+            get { return bind_S15_value; }
+            set { bind_S15_value = value; OnPropertyChanged("bind_S15"); }
         }
-        }
+
         public bool bind_S14
         {
-            get
-            {
-                if (IDAKCE_int > 1)
-                {
-                    Boolean vysledek = false;
-                if (SQL_READDATA("SYBASE", "select A.NETJMENO from akce_akcepocitac_v A left outer join AKCE_REGINFO_V R on R._MASTERID = A._MASTERID  where A.netjmeno='_S14' and R.SERNR='" + IDAKCE + "'", "console") == "_S14")
-                { vysledek = true; };
-                return vysledek;
-                }
-                else { return false; }
-            }
+            get { return bind_S14_value; }
+            set { bind_S14_value = value; OnPropertyChanged("bind_S14"); }
         }
+
         public bool bind_S13
         {
-            get
-            {
-                if (IDAKCE_int > 1)
-                {
-                    Boolean vysledek = false;
-                if (SQL_READDATA("SYBASE", "select A.NETJMENO from akce_akcepocitac_v A left outer join AKCE_REGINFO_V R on R._MASTERID = A._MASTERID  where A.netjmeno='_S13' and R.SERNR='" + IDAKCE + "'", "console") == "_S13")
-                { vysledek = true; };
-                return vysledek;
-            }
-                else { return false; }
+            get { return bind_S13_value; }
+            set { bind_S13_value = value; OnPropertyChanged("bind_S13"); }
         }
-        }
+
         public bool bind_S12
         {
-            get
-            {
-                if (IDAKCE_int > 1)
-                {
-                    Boolean vysledek = false;
-                if (SQL_READDATA("SYBASE", "select A.NETJMENO from akce_akcepocitac_v A left outer join AKCE_REGINFO_V R on R._MASTERID = A._MASTERID  where A.netjmeno='_S12' and R.SERNR='" + IDAKCE + "'", "console") == "_S12")
-                { vysledek = true; };
-                return vysledek;
-                }
-                else { return false; }
-            }
+            get { return bind_S12_value; }
+            set { bind_S12_value = value; OnPropertyChanged("bind_S12"); }
         }
+
 
         #endregion
 
@@ -188,153 +133,195 @@ namespace HH6C.Model
 
 
 
-        private string someText;
-        public string SomeText
+
+        public int IDAKCE
         {
-            get { return someText; }
-            set
-            {
-                someText = value;
+            get { return IDAKCE_int; }
+            set {
+                IDAKCE_int = value;
+                    Console.WriteLine("** VM nastavuji IDAKCE a hledam interniID");
+                    BIND_INTERNIIDAKCE = Convert.ToInt32(SQL_READDATA("SYBASE", "select A._ID from AKCE_V A left outer join AKCE_REGINFO_V R on R._MASTERID = A._ID where R.SERNR='" + IDAKCE_int + "'", "console"));
+                OnPropertyChanged("** BIND_INTERNIIDAKCE");
+               
 
 
+              
             }
         }
 
 
 
-
-        public int IDAKCE
+        public void hledejakci(int SN)
         {
-            get { return IDAKCE_int; }
-            set { 
-                IDAKCE_int = value;
-                if (IDAKCE_int > 1) {
-                    Console.WriteLine("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-                        BIND_INTERNIIDAKCE = Convert.ToInt32(SQL_READDATA("SYBASE", "select A._ID from AKCE_V A left outer join AKCE_REGINFO_V R on R._MASTERID = A._ID where R.SERNR='" + IDAKCE_int + "'", "console"));
-                        OnPropertyChanged("IDAKCE");
-                        OnPropertyChanged("BIND_CISLAAKCE");
-                        OnPropertyChanged("BIND_NAZEVAKCE");
-                        OnPropertyChanged("BIND_TYPSS");
-                        OnPropertyChanged("BIND_TYPSW");
-                        OnPropertyChanged("BIND_TYPPROVOZU");
-                        OnPropertyChanged("BIND_STAVAKCE");
-                        OnPropertyChanged("BIND_ADRESA");
-                        OnPropertyChanged("BIND_POSLEDNITK");
-                        OnPropertyChanged("BIND_POSLEDNISZ");
+            Console.WriteLine("VM hledam akci a nastavuji ID");
+            
+            IDAKCE = SN ;
+
+            BIND_NAZEVAKCE = "--- NAZEVAKCE --- ";
+            BIND_CISLAAKCE = "--- CISLAAKCE ---";
+            bind_S20 = false;
+            bind_S19 = false;
+            bind_S18 = false;
+            bind_S17 = false;
+            bind_S16 = false;
+            bind_S15 = false;
+            bind_S14 = false;
+            bind_S13 = false;
+            bind_S12 = false;
+            BIND_TYPSS = "--- TYPSS ---";
+            BIND_STAVAKCE = "--- STAVAKCE ---";
+            BIND_TYPSW = "--- TYPSW ---";
+            BIND_TYPPROVOZU = "--- TYPPROVOZU ---";
+            BIND_POSLEDNISZ = "--- POSLEDNISZ ---";
+            BIND_POSLEDNITK = "--- POSLEDNITK ---";
+            BIND_ADRESA = "--- ADRESA ---";
 
 
-                        for (int i = 12; i <= 20; i++)
-                        {
-                            OnPropertyChanged("bind_S"+i);
-                        }
-                    }
-                }
-    }
+            BIND_NAZEVAKCE = SQL_READDATA("SYBASE", "select A.NAZEV from AKCE_V A where A._ID='" + BIND_INTERNIIDAKCE + "'", "console");
 
+
+            if (SQL_READDATA("SYBASE", "select A.NETJMENO from akce_akcepocitac_v A left outer join AKCE_REGINFO_V R on R._MASTERID = A._MASTERID  where A.netjmeno='_S20' and R.SERNR='" + IDAKCE + "'", "console") == "_S20") { bind_S20= true; };
+            if (SQL_READDATA("SYBASE", "select A.NETJMENO from akce_akcepocitac_v A left outer join AKCE_REGINFO_V R on R._MASTERID = A._MASTERID  where A.netjmeno='_S19' and R.SERNR='" + IDAKCE + "'", "console") == "_S19") { bind_S19 = true; };
+            if (SQL_READDATA("SYBASE", "select A.NETJMENO from akce_akcepocitac_v A left outer join AKCE_REGINFO_V R on R._MASTERID = A._MASTERID  where A.netjmeno='_S18' and R.SERNR='" + IDAKCE + "'", "console") == "_S18") { bind_S18 = true; };
+            if (SQL_READDATA("SYBASE", "select A.NETJMENO from akce_akcepocitac_v A left outer join AKCE_REGINFO_V R on R._MASTERID = A._MASTERID  where A.netjmeno='_S17' and R.SERNR='" + IDAKCE + "'", "console") == "_S17") { bind_S17 = true; };
+            if (SQL_READDATA("SYBASE", "select A.NETJMENO from akce_akcepocitac_v A left outer join AKCE_REGINFO_V R on R._MASTERID = A._MASTERID  where A.netjmeno='_S16' and R.SERNR='" + IDAKCE + "'", "console") == "_S16") { bind_S16 = true; };
+            if (SQL_READDATA("SYBASE", "select A.NETJMENO from akce_akcepocitac_v A left outer join AKCE_REGINFO_V R on R._MASTERID = A._MASTERID  where A.netjmeno='_S15' and R.SERNR='" + IDAKCE + "'", "console") == "_S15") { bind_S15 = true; };
+            if (SQL_READDATA("SYBASE", "select A.NETJMENO from akce_akcepocitac_v A left outer join AKCE_REGINFO_V R on R._MASTERID = A._MASTERID  where A.netjmeno='_S14' and R.SERNR='" + IDAKCE + "'", "console") == "_S14") { bind_S14 = true; };
+            if (SQL_READDATA("SYBASE", "select A.NETJMENO from akce_akcepocitac_v A left outer join AKCE_REGINFO_V R on R._MASTERID = A._MASTERID  where A.netjmeno='_S13' and R.SERNR='" + IDAKCE + "'", "console") == "_S13") { bind_S13 = true; };
+            if (SQL_READDATA("SYBASE", "select A.NETJMENO from akce_akcepocitac_v A left outer join AKCE_REGINFO_V R on R._MASTERID = A._MASTERID  where A.netjmeno='_S12' and R.SERNR='" + IDAKCE + "'", "console") == "_S12") { bind_S12 = true; };
+
+
+           
+            string sqlvysledek;
+            sqlvysledek = SQL_READDATA("SYBASE", "select R.SERNR, A._ID, A.CISLO from AKCE_V A left outer join AKCE_REGINFO_V R on R._MASTERID = A._ID where A._ID='" + BIND_INTERNIIDAKCE + "'", "console");
+            string[] stringSeparators = new string[] { "|||" };
+            string[] vysledky = sqlvysledek.Split(stringSeparators, StringSplitOptions.None);
+            if (vysledky.Length >= 3)
+            { BIND_CISLAAKCE = string.Format("SN : {0}   |   ID : {1}   |   ČÍSLO : {2}", vysledky[0], vysledky[1], vysledky[2]);}
+
+
+            BIND_TYPSS= SQL_READDATA("SYBASE", "select A.SSTYP from AKCE_V A where A._ID='" + BIND_INTERNIIDAKCE + "'", "console");
+            BIND_TYPSW =  SQL_READDATA("SYBASE", "select A.SKUPAKCE1 from AKCE_V A where A._ID='" + BIND_INTERNIIDAKCE + "'", "console");
+            BIND_TYPPROVOZU =  SQL_READDATA("SYBASE", "select A.akcetyp from AKCE_V A where A._ID='" + BIND_INTERNIIDAKCE + "'", "console");
+            BIND_STAVAKCE =  SQL_READDATA("SYBASE", "select A.akcestav from AKCE_V A where A._ID='" + BIND_INTERNIIDAKCE + "'", "console");
+
+            string vracenedatum = "---";
+            try
+            {
+                string iString = SQL_READDATA("SYBASE", "select first CAST(a.ukoncenidt AS DATE) DATUM from telkonzultace_v A where A._AKCEID = '" + BIND_INTERNIIDAKCE + "' ORDER BY a._id desc", "console");
+                DateTime oDate = DateTime.ParseExact(iString, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+                vracenedatum = "Poslední SZ : " + oDate.ToString("dd.MM.yyyy");
+            }
+            catch (Exception exp)
+            {
+                Console.Write(exp.ToString());
+            }
+            BIND_POSLEDNISZ = vracenedatum;
+
+
+
+            
+            try
+            {
+                string iString = SQL_READDATA("SYBASE", "select first CAST(a.odjezddt  AS DATE) DATUM from protokol_v A where A._AKCEID = '" + BIND_INTERNIIDAKCE + "' ORDER BY a._id desc", "console");
+                DateTime oDate = DateTime.ParseExact(iString, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+                vracenedatum = "Poslední TK : " + oDate.ToString("dd.MM.yyyy");
+            }
+
+            catch (Exception exp)
+            {
+                Console.Write(exp.ToString());
+            }
+            BIND_POSLEDNITK_value= vracenedatum;
+
+
+
+
+
+            string ret = "---";
+            sqlvysledek = SQL_READDATA("SYBASE", "select A.adresa1, A.mesto from AKCE_V A where A._ID='" + BIND_INTERNIIDAKCE + "'", "console");
+            stringSeparators = new string[] { "|||" };
+            vysledky = sqlvysledek.Split(stringSeparators, StringSplitOptions.None);
+            if (vysledky.Length >= 2)
+            {
+                ret = string.Format("{0},{1}", vysledky[0], vysledky[1]); ;
+            }
+            BIND_ADRESA = ret;
+
+
+
+
+        }
 
         public int BIND_INTERNIIDAKCE
         {
             get { return INTERNIAKCEID_int; }
             set
-            {
-                INTERNIAKCEID_int = value;
-                OnPropertyChanged("BIND_INTERNIIDAKCE");
-            }
+            { INTERNIAKCEID_int = value;OnPropertyChanged("BIND_INTERNIIDAKCE");}
         }
+
 
         public string BIND_CISLAAKCE
         {
-            get {
-                string ret="---";
-                string sqlvysledek;
-                sqlvysledek = SQL_READDATA("SYBASE", "select R.SERNR, A._ID, A.CISLO from AKCE_V A left outer join AKCE_REGINFO_V R on R._MASTERID = A._ID where A._ID='" + BIND_INTERNIIDAKCE + "'", "console");
-                string[] stringSeparators = new string[] { "|||" };
-                string[] vysledky = sqlvysledek.Split(stringSeparators, StringSplitOptions.None);
-                if (vysledky.Length >= 3) { 
-                ret = string.Format("SN : {0}   |   ID : {1}   |   ČÍSLO : {2}", vysledky[0], vysledky[1], vysledky[2]); ;
-                }
-                return ret;
-                ;
-            }
+            get { return BIND_CISLAAKCE_value; }
+            set { BIND_CISLAAKCE_value = value; OnPropertyChanged("BIND_CISLAAKCE");}
         }
+
 
         public string BIND_NAZEVAKCE
         {
-            get
-            {
-                return  SQL_READDATA("SYBASE", "select A.NAZEV from AKCE_V A where A._ID='" + BIND_INTERNIIDAKCE + "'", "console");
-            }
+            get {return BIND_NAZEVAKCE_value;}
+            set
+            { BIND_NAZEVAKCE_value = value; OnPropertyChanged("BIND_NAZEVAKCE");}
         }
+
 
         public string BIND_TYPSS
         {
-            get
-            {
-                return SQL_READDATA("SYBASE", "select A.SSTYP from AKCE_V A where A._ID='" + BIND_INTERNIIDAKCE + "'", "console");
-            }
+            get { return BIND_TYPSS_value; }
+            set { BIND_TYPSS_value = value; OnPropertyChanged("BIND_TYPSS"); }
         }
 
-        public string BIND_TYPSW {get {return SQL_READDATA("SYBASE", "select A.SKUPAKCE1 from AKCE_V A where A._ID='" + BIND_INTERNIIDAKCE + "'", "console");}}
-        public string BIND_TYPPROVOZU { get { return SQL_READDATA("SYBASE", "select A.akcetyp from AKCE_V A where A._ID='" + BIND_INTERNIIDAKCE + "'", "console"); } }
-        public string BIND_STAVAKCE { get { return SQL_READDATA("SYBASE", "select A.akcestav from AKCE_V A where A._ID='" + BIND_INTERNIIDAKCE + "'", "console"); } }
-        private int int_FLIPID=1;
+        public string BIND_STAVAKCE
+        {
+            get { return BIND_STAVAKCE_value; }
+            set { BIND_STAVAKCE_value = value; OnPropertyChanged("BIND_STAVAKCE"); }
+        }
+
+        public string BIND_TYPPROVOZU
+        {
+            get { return BIND_TYPPROVOZU_value; }
+            set { BIND_TYPPROVOZU_value = value; OnPropertyChanged("BIND_TYPPROVOZU"); }
+        }
+
+        public string BIND_TYPSW
+        {
+            get { return BIND_TYPSW_value; }
+            set { BIND_TYPSW_value = value; OnPropertyChanged("BIND_TYPSW"); }
+        }
+
+
+
       
 
         public string BIND_POSLEDNISZ { 
-            get {
-                string vracenedatum = "---";
-                try
-                {
 
-                string iString = SQL_READDATA("SYBASE", "select first CAST(a.ukoncenidt AS DATE) DATUM from telkonzultace_v A where A._AKCEID = '" + BIND_INTERNIIDAKCE + "' ORDER BY a._id desc", "console");
-                DateTime oDate = DateTime.ParseExact(iString, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-                vracenedatum = "Poslední SZ : " + oDate.ToString("dd.MM.yyyy");
-                }
-                catch (Exception exp)
-                {
-                    Console.Write(exp.ToString());
-                }
-                return vracenedatum;
-            }
+            get { return BIND_POSLEDNISZ_value; }
+            set { BIND_POSLEDNISZ_value = value; OnPropertyChanged("BIND_POSLEDNISZ"); }
         }
 
         public string BIND_POSLEDNITK
         {
-            get
-            {
-                string vracenedatum = "---";
-try
-                {
-                    string iString = SQL_READDATA("SYBASE", "select first CAST(a.odjezddt  AS DATE) DATUM from protokol_v A where A._AKCEID = '" + BIND_INTERNIIDAKCE + "' ORDER BY a._id desc", "console");
-                    DateTime oDate = DateTime.ParseExact(iString, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-                    vracenedatum= "Poslední TK : " +  oDate.ToString("dd.MM.yyyy");
-                }
-
-                catch (Exception exp)
-                {
-                    Console.Write(exp.ToString());
-                }
-                return vracenedatum;
-            }
+            get{ return BIND_POSLEDNITK_value; }
+            set { BIND_POSLEDNITK_value = value; OnPropertyChanged("BIND_POSLEDNITK"); }
         }
 
 
         public string BIND_ADRESA
         {
             get
-            {
-                string ret = "---";
-                string sqlvysledek;
-                sqlvysledek = SQL_READDATA("SYBASE", "select A.adresa1, A.mesto from AKCE_V A where A._ID='" + BIND_INTERNIIDAKCE + "'", "console");
-                string[] stringSeparators = new string[] { "|||" };
-                string[] vysledky = sqlvysledek.Split(stringSeparators, StringSplitOptions.None);
-                if (vysledky.Length >= 2)
-                {
-                    ret = string.Format("{0},{1}", vysledky[0], vysledky[1]); ;
-                }
-                return ret;
-                ;
-            }
+            { return BIND_ADRESA_value; }
+            set { BIND_ADRESA_value = value; OnPropertyChanged("BIND_ADRESA"); }
         }
 
         //VM.Adresa = string.Format("{0},{1}", vysledky[6], vysledky[7]);

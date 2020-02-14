@@ -30,9 +30,5 @@ namespace HH6C.View
 
    
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            VM.SomeText = "First view text";
-        }
     }
 }

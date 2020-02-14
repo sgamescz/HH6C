@@ -26,7 +26,10 @@ namespace HH6C.View
         private ViewModel VM => this.DataContext as ViewModel;
         public Akce()
         {
+            Console.WriteLine("AKCE INICIALIZACE");
             InitializeComponent();
+            Console.WriteLine("AKCE INICIALIZOVANO");
+
         }
 
 
@@ -36,75 +39,14 @@ namespace HH6C.View
             hledejakci(Int32.Parse(hledaneid.Text));
         }
 
-       
-
 
 
         public void hledejakci(int ID)
         {
             try
             {
-
-                VM.IDAKCE=ID;
-                
-                string vratkaselectu;
-                vratkaselectu = VM.SQL_READDATA("SYBASE", "select A.NAZEV, R.SERNR, A._ID, A.CISLO, A.SSTYP, A.Akcestav, A.adresa1, A.mesto, A.popisinst, A.ras, A.popisnet, A._SKA2ID, A.popis, A.Akcetyp, A.SKUPAKCE1 from AKCE_V A left outer join AKCE_REGINFO_V R on R._MASTERID = A._ID where r.SERNR = '" + ID + "' ORDER BY NAZEV", "console");
-                string[] stringSeparators = new string[] { "|||" };
-                string[] vysledky = vratkaselectu.Split(stringSeparators, StringSplitOptions.None);
-                //            foreach (string word in vysledky)
-                //          {
-                //            Console.WriteLine("vysledky: " + word);
-                //      }
-                var color = (Brush)Application.Current.Resources["MahApps.Brushes.Accent"];
-
-
-            
-
-                ////title_stavakce.Background = color;
-                ////title_smlouva.Background = color;
-                ////title_olomouc.Background = color;
-                ////title_praha.Background = color;
-
-                ////if (vysledky[4] == "TOP servis") { title_smlouva.Background = Brushes.YellowGreen; }
-                ////if (vysledky[4] == "S19 (Maintenance)") { title_smlouva.Background = Brushes.Gray; }
-                ////if (vysledky[4] == "S18 (Maintenance)") { title_smlouva.Background = Brushes.Gray; }
-                ////if (vysledky[4] == "S17 (Maintenance)") { title_smlouva.Background = Brushes.Gray; }
-                ////if (vysledky[4] == "S16 (Maintenance)") { title_smlouva.Background = Brushes.Gray; }
-                ////if (vysledky[4] == "S15 (Maintenance)") { title_smlouva.Background = Brushes.Gray; }
-                ////if (vysledky[5].Contains("rušená")) { title_stavakce.Background = Brushes.Gray; }
-                ////if (vysledky[5].Contains("V hotovosti")) { title_stavakce.Background = Brushes.Red; }
-
-                ////akceinfo.Text = vysledky[8];
-                ////akceinfo2.Text = vysledky[9];
-                ////akceinfo3.Text = vysledky[10];
-                ////akceinfo_zaklinfo.Text = vysledky[12];
-
-
-                //string iString = VM.SQL_READDATA("SYBASE", "select first CAST(a.ukoncenidt AS DATE) DATUM from telkonzultace_v A left outer join AKCE_REGINFO_V R on R._MASTERID = A._akceid where r.SERNR = '" + ID + "' ORDER BY a._id desc", "console");
-                //DateTime oDate = DateTime.ParseExact(iString, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-//                title_poslednitk.Title = oDate.ToString("dd.MM.yyyy");
-
-                //iString = VM.SQL_READDATA("SYBASE", "select first CAST(a.odjezddt  AS DATE) DATUM from protokol_v A left outer join AKCE_REGINFO_V R on R._MASTERID = A._akceid where r.SERNR = '" + ID + "' ORDER BY a._id desc", "console");
-                //oDate = DateTime.ParseExact(iString, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-  //              title_poslednisz.Title = oDate.ToString("dd.MM.yyyy");
-
-                
-              
-
-
-                //VM.API_GETGOOGLEDISTANCE(VM.SQL_READDATA("SYBASE", "select A.SEPJMENO from akce_akcepocitac_v A left outer join AKCE_REGINFO_V R on R._MASTERID = A._MASTERID  where A.netjmeno='_GPS' and R.SERNR='" + ID + "'", "console"), "Praha");
-                //VM.API_GETGOOGLEDISTANCE(VM.SQL_READDATA("SYBASE", "select A.SEPJMENO from akce_akcepocitac_v A left outer join AKCE_REGINFO_V R on R._MASTERID = A._MASTERID  where A.netjmeno='_GPS' and R.SERNR='" + ID + "'", "console"), "Olomouc");
-                //title_ostrava.Count = "145Km" + Environment.NewLine + "1:45 hod.";
-                
-
-                //Decimal kilometry1 = Convert.ToDecimal(title_praha.Count.Remove(title_praha.Count.Length - 2));
-                //Decimal kilometry2 = Convert.ToDecimal(title_olomouc.Count.Remove(title_olomouc.Count.Length - 2));
-                //Console.WriteLine(kilometry1);
-                //Console.WriteLine(kilometry2);
-
-                //if (kilometry1>kilometry2) { title_praha.Background = Brushes.Gray; }
-                //else { title_olomouc.Background = Brushes.Gray;  }
-
+                VM.hledejakci(ID);
+           
             }
             catch (Exception exp)
             {
@@ -164,7 +106,15 @@ namespace HH6C.View
             //mybutton.Click += button_Click;
         }
 
-    
+        private void unload(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("AKCE UNLOADED");
+        }
 
+        private void Label_Loaded(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("AKCE LOADED");
+
+        }
     }
 }

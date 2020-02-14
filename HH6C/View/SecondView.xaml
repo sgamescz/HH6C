@@ -35,7 +35,7 @@
         <Button Style="{DynamicResource MahApps.Styles.Button.Square}" Content="Fcolor" HorizontalAlignment="Left" Margin="150,175,-216,-60" VerticalAlignment="Top" Width="170" Height="30"/>
 
         <Controls:Tile x:Name="tile" Title="Ahoj" Width="155" Height="165" Count="1" Margin="69,275,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"  />
-        <Button Content="{Binding SomeText}" Margin="22,190,0,0" HorizontalAlignment="Left" Width="83" Height="55" VerticalAlignment="Top"/>
+        <Button Content="ssss" Margin="22,190,0,0" HorizontalAlignment="Left" Width="83" Height="55" VerticalAlignment="Top"/>
 
     </Grid>
 </UserControl>

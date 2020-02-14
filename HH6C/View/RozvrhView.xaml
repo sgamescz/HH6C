@@ -20,7 +20,7 @@
                                               Kind="Places"  
                                               
                                        />
-                    <TextBox Width="200" Height="20" Text="{Binding SomeText}" Margin="296,111,263,245"></TextBox>
+                    <TextBox Width="200" Height="20" Text="test" Margin="296,111,263,245"></TextBox>
                 </Grid>
                 <Grid Background="#00A600">
                     <iconPacks:PackIconModern Width="60"

@@ -17,11 +17,11 @@
             </Grid>
         </Expander>
         <Controls:Badged Badge=" Tady " BadgePlacementMode="TopRight" Margin="520,195,40,185" >
-            <Button Content="ahoj" Click="Button_Click"  />
+            <Button Content="ahoj"  />
         </Controls:Badged>
 
 
-        <TextBox Controls:TextBoxHelper.Watermark="This is a textbox" Text="{Binding SomeText}" Margin="275,105,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="165" />
+        <TextBox Controls:TextBoxHelper.Watermark="This is a textbox" Text="asdasd" Margin="275,105,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="165" />
         <TextBox x:Name="firsttext" Controls:TextBoxHelper.ClearTextButton="True" Controls:TextBoxHelper.Watermark="{Binding ElementName=_switch, Path=IsChecked}"     Margin="275,69,0,0" HorizontalAlignment="Left" Width="165" Height="31" VerticalAlignment="Top" />
         <Controls:ToggleSwitch x:Name="_switch" OnLabel="Yep" OnSwitchBrush="Green" OffSwitchBrush="IndianRed"  OffLabel=":(" Foreground="{DynamicResource MahApps.Brushes.Accent}" Header="WiFi rest state" Margin="210,273,0,0" Style="{DynamicResource MahApps.Styles.ToggleSwitch.Win10}" HorizontalAlignment="Left" Width="165" Height="70" VerticalAlignment="Top" />
         <Controls:ToggleSwitchButton Content="aaa" Style="{DynamicResource MahApps.Styles.ToggleSwitchButton.Win10}" Width="95" Height="31" Margin="200,348,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>

@@ -34,6 +34,7 @@ namespace HH6C.View
 
         public HledaniView()
         {
+        
             InitializeComponent();
         }
 
