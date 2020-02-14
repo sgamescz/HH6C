@@ -14,6 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using HH6C.Model;
 using System.Data.Odbc;
+using MahApps.Metro.Controls.Dialogs;
+using MahApps.Metro.Controls;
+
 
 namespace HH6C.View
 {
@@ -34,19 +37,45 @@ namespace HH6C.View
 
 
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            // Get the Parent MertoWindow here. We could also use a dialogcoordinator here if we want to.
+            var currentWindow = this.TryFindParent<MetroWindow>();
+            var controller = await currentWindow.ShowProgressAsync("Loading data...", "Searching ...");
+            await Task.Delay(500);
+            controller.SetMessage("Fetching data for id"+hledaneid.Text );
+            controller.SetProgress(20 / 100.0);
+            await Task.Delay(300);
+            controller.SetMessage("Performing SQL search...");
+            controller.SetProgress(40 / 100.0);
+            await Task.Delay(100);
             hledejakci(Int32.Parse(hledaneid.Text));
+            controller.SetMessage("Formating...");
+            controller.SetProgress(80 / 100.0);
+            await Task.Delay(100);
+            controller.SetMessage("Done");
+            controller.SetProgress(100 / 100.0);
+            await Task.Delay(100);
+            await controller.CloseAsync();
         }
 
 
 
         public void hledejakci(int ID)
         {
+
+
+
+
+
+
             try
             {
+
+          
                 VM.hledejakci(ID);
-           
+      
+
             }
             catch (Exception exp)
             {

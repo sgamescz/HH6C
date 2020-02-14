@@ -18,6 +18,47 @@
                 <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
                 <Setter Property="TitleFontSize" Value="14" />
                 <Setter Property="Width" Value="300" />
+                              
+            </Style>
+
+            
+            <Style x:Key="LargeTileStylecolored" TargetType="Controls:Tile">
+                <Setter Property="Height" Value="125" />
+                <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+                <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+                <Setter Property="TitleFontSize" Value="14" />
+                <Setter Property="Width" Value="300" />
+               
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding BIND_BARVASMLOUVY}" Value="normal">
+                        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.AccentBase}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding BIND_BARVASMLOUVY}" Value="top">
+                        <Setter Property="Background" Value="Red" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding BIND_BARVASMLOUVY}" Value="none">
+                        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray5}" />
+                    </DataTrigger>
+                </Style.Triggers>
+
+
+            </Style>
+
+
+            <Style x:Key="ExtraLargeTileStyle" TargetType="Controls:Tile">
+                <Setter Property="Height" Value="125" />
+                <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+                <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+                <Setter Property="TitleFontSize" Value="14" />
+                <Setter Property="Width" Value="454" />
+            </Style>
+
+            <Style x:Key="SmallTileStylecolored" TargetType="Controls:Tile">
+                <Setter Property="Height" Value="125" />
+                <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+                <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
+                <Setter Property="TitleFontSize" Value="14" />
+                <Setter Property="Width" Value="147" />
                 <Style.Triggers>
                     <Trigger Property ="IsEnabled" Value="True">
                     </Trigger>
@@ -25,18 +66,22 @@
                         <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Black}" />
                         <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray6}" />
                     </Trigger>
-                </Style.Triggers>
-            </Style>
 
-            
-            
-            
-            <Style x:Key="ExtraLargeTileStyle" TargetType="Controls:Tile">
-                <Setter Property="Height" Value="125" />
-                <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
-                <Setter Property="TextOptions.TextRenderingMode" Value="ClearType" />
-                <Setter Property="TitleFontSize" Value="14" />
-                <Setter Property="Width" Value="454" />
+                    <DataTrigger Binding="{Binding BIND_BARVASTAVU}" Value="normal">
+                        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.AccentBase}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding BIND_BARVASTAVU}" Value="zakaz">
+                        <Setter Property="Background" Value="Red" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding BIND_BARVASTAVU}" Value="zruseno">
+                        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray5}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding BIND_BARVASTAVU}" Value="hotovost">
+                        <Setter Property="Background" Value="Orange" />
+                    </DataTrigger>
+                </Style.Triggers>
+                
+                
             </Style>
 
             <Style x:Key="SmallTileStyle" TargetType="Controls:Tile">
@@ -53,8 +98,10 @@
                         <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray6}" />
                     </Trigger>
                 </Style.Triggers>
-            </Style>
 
+
+            </Style>
+            
             <Style x:Key="extraSmallTileStyle" TargetType="Controls:Tile">
                 <Setter Property="Height" Value="105" />
                 <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
@@ -174,13 +221,11 @@
                            Count="{Binding BIND_TYPSS}"
                            CountFontSize="25"
                            HorizontalTitleAlignment="Center"
-                           IsEnabled="False" 
+                           IsEnabled="True"  
                            Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource MahApps.Brushes.Black}"
-                           Style="{StaticResource LargeTileStyle}"
-                          
+                           Style="{StaticResource LargeTileStylecolored}"
                            />
-             
-              
+
 
                 <Controls:Tile Title="{Binding BIND_TYPSW}" Name="title_septim"
                          Count=""
@@ -202,9 +247,9 @@
                     <iconPacks:PackIconBoxIcons Kind="SolidBuildingHouse" Width="40" Height="40" />
                 </Controls:Tile>
                 <Controls:Tile Title="{Binding BIND_STAVAKCE}" Name="title_stavakce"
-                           IsEnabled="False"
+                           IsEnabled="True"
                            Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource MahApps.Brushes.Black}"
-                           Style="{StaticResource SmallTileStyle}">
+                           Style="{StaticResource SmallTileStylecolored}">
                     <iconPacks:PackIconMaterial Kind="ShieldHomeOutline" Width="40" Height="40"/>
                 </Controls:Tile>
 

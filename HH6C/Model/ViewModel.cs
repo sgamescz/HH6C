@@ -47,6 +47,8 @@ namespace HH6C.Model
         string BIND_POSLEDNISZ_value = "--- POSLEDNISZ ---";
         string BIND_POSLEDNITK_value = "--- POSLEDNITK ---";
         string BIND_ADRESA_value = "--- ADRESA ---";
+        string BIND_BARVASMLOUVY_value = "nic";
+        string BIND_BARVASTAVU_value = "nic";
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -149,7 +151,7 @@ namespace HH6C.Model
             }
         }
 
-
+        
 
         public void hledejakci(int SN)
         {
@@ -205,7 +207,24 @@ namespace HH6C.Model
             BIND_TYPPROVOZU =  SQL_READDATA("SYBASE", "select A.akcetyp from AKCE_V A where A._ID='" + BIND_INTERNIIDAKCE + "'", "console");
             BIND_STAVAKCE =  SQL_READDATA("SYBASE", "select A.akcestav from AKCE_V A where A._ID='" + BIND_INTERNIIDAKCE + "'", "console");
 
-            string vracenedatum = "---";
+
+
+            //obarvovani pro binding
+            BIND_BARVASTAVU = "normal";
+            if (BIND_STAVAKCE.Contains("ušená")) { BIND_BARVASTAVU = "zruseno"; }
+            if (BIND_STAVAKCE.Contains("hotovo")) { BIND_BARVASTAVU = "hotovost"; }
+            if (BIND_STAVAKCE.Contains("Zákaz ")) { BIND_BARVASTAVU = "zakaz"; }
+
+            BIND_BARVASMLOUVY = "none";
+            if (BIND_TYPSS.Contains("TOP")) { BIND_BARVASMLOUVY = "top"; }
+            if (BIND_TYPSS == "Zrychlená") { BIND_BARVASMLOUVY = "top"; }
+            if (BIND_TYPSS.Contains("20")) { BIND_BARVASMLOUVY = "normal"; }
+            if (BIND_TYPSS == "Smlouva SDX") { BIND_BARVASMLOUVY = "normal"; }
+            if (BIND_TYPSS == "servis protel") { BIND_BARVASMLOUVY = "normal"; }
+
+
+
+            string vracenedatum = "nikdy";
             try
             {
                 string iString = SQL_READDATA("SYBASE", "select first CAST(a.ukoncenidt AS DATE) DATUM from telkonzultace_v A where A._AKCEID = '" + BIND_INTERNIIDAKCE + "' ORDER BY a._id desc", "console");
@@ -220,7 +239,8 @@ namespace HH6C.Model
 
 
 
-            
+            vracenedatum = "nikdy";
+
             try
             {
                 string iString = SQL_READDATA("SYBASE", "select first CAST(a.odjezddt  AS DATE) DATUM from protokol_v A where A._AKCEID = '" + BIND_INTERNIIDAKCE + "' ORDER BY a._id desc", "console");
@@ -232,7 +252,7 @@ namespace HH6C.Model
             {
                 Console.Write(exp.ToString());
             }
-            BIND_POSLEDNITK_value= vracenedatum;
+            BIND_POSLEDNITK= vracenedatum;
 
 
 
@@ -258,6 +278,19 @@ namespace HH6C.Model
             get { return INTERNIAKCEID_int; }
             set
             { INTERNIAKCEID_int = value;OnPropertyChanged("BIND_INTERNIIDAKCE");}
+        }
+
+        public string BIND_BARVASMLOUVY
+        {
+            get { return BIND_BARVASMLOUVY_value; }
+            set { BIND_BARVASMLOUVY_value = value; OnPropertyChanged("BIND_BARVASMLOUVY"); }
+        }
+
+
+        public string BIND_BARVASTAVU
+        {
+            get { return BIND_BARVASTAVU_value; }
+            set { BIND_BARVASTAVU_value = value; OnPropertyChanged("BIND_BARVASTAVU"); }
         }
 
 
